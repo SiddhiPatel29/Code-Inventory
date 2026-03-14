@@ -47,7 +47,14 @@ export async function registerUser(formData: FormData) {
 
     return { success: true };
   } catch (error: any) {
-    console.error("Registration error:", error);
-    return { error: error.message || "An unexpected error occurred during registration." };
+    console.error("FULL REGISTRATION ERROR:", error);
+    
+    // Check for specific Prisma errors
+    if (error.code === 'P2002') {
+      return { error: "A user with this email already exists." };
+    }
+    
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    return { error: `Registration failed: ${errorMessage}` };
   }
 }
