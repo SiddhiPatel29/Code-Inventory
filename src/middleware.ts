@@ -23,6 +23,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico, sitemap.xml, robots.txt (metadata files)
      */
-    "/((?!api/auth|api/init-db|login|register|_next/static|_next/image|favicon.ico).*)",
+    "/((?!api/auth|api/init-db|api/seed|login|register|_next/static|_next/image|favicon.ico).*)",
   ],
 };

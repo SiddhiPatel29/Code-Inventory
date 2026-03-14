@@ -13,16 +13,25 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
+          console.log("AUTH: Missing credentials");
           throw new Error("Invalid credentials");
         }
 
+        const email = credentials.email.toLowerCase();
+
         const user = await prisma.user.findUnique({
           where: {
-            email: credentials.email
+            email: email
           }
         });
 
-        if (!user || !user.password) {
+        if (!user) {
+          console.log(`AUTH: User not found: ${email}`);
+          throw new Error("Invalid credentials");
+        }
+
+        if (!user.password) {
+          console.log(`AUTH: User has no password set: ${email}`);
           throw new Error("Invalid credentials");
         }
 
@@ -32,9 +41,11 @@ export const authOptions: NextAuthOptions = {
         );
 
         if (!isPasswordValid) {
+          console.log(`AUTH: Password mismatch for: ${email}`);
           throw new Error("Invalid credentials");
         }
 
+        console.log(`AUTH: Login successful for: ${email}`);
         return {
           id: user.id,
           email: user.email,
