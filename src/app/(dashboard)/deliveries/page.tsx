@@ -42,7 +42,7 @@ export default async function DeliveriesPage() {
               No deliveries found
             </h3>
             <p className="text-sm text-muted-foreground mb-4 max-w-sm">
-              You haven't shipped out any goods yet. Dispatch a delivery to log outgoing stock.
+              You haven&apos;t shipped out any goods yet. Dispatch a delivery to log outgoing stock.
             </p>
           </div>
         </div>

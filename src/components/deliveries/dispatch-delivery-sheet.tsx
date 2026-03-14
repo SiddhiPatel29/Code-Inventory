@@ -38,9 +38,9 @@ export function DispatchDeliverySheet({
   customers, 
   internalLocations 
 }: { 
-  products: any[]; 
-  customers: any[]; 
-  internalLocations: any[] 
+  products: { id: string, name: string, sku: string }[]; 
+  customers: { id: string, name: string }[]; 
+  internalLocations: { id: string, name: string }[] 
 }) {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState("");

@@ -60,10 +60,10 @@ export async function createProduct(formData: FormData) {
     revalidatePath("/products");
     return { success: true, data: newProduct };
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Failed to create product:", error);
     // basic unique constraint handling
-    if (error?.code === 'P2002') {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'P2002') {
       return { success: false, error: `SKU must be unique` };
     }
     return { success: false, error: "Failed to create product" };

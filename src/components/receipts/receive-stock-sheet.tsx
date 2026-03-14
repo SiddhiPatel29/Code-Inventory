@@ -38,9 +38,9 @@ export function ReceiveStockSheet({
   vendors, 
   internalLocations 
 }: { 
-  products: any[]; 
-  vendors: any[]; 
-  internalLocations: any[] 
+  products: { id: string, name: string, sku: string }[]; 
+  vendors: { id: string, name: string }[]; 
+  internalLocations: { id: string, name: string }[] 
 }) {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState("");

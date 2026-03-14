@@ -41,7 +41,7 @@ export default async function TransfersPage() {
               No transfers found
             </h3>
             <p className="text-sm text-muted-foreground mb-4 max-w-sm">
-              You haven't moved any goods internally. Initiate a new transfer to shift stock between warehouses.
+              You haven&apos;t moved any goods internally. Initiate a new transfer to shift stock between warehouses.
             </p>
           </div>
         </div>

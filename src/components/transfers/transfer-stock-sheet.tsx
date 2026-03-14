@@ -37,8 +37,8 @@ export function TransferStockSheet({
   products, 
   internalLocations 
 }: { 
-  products: any[]; 
-  internalLocations: any[] 
+  products: { id: string, name: string, sku: string }[]; 
+  internalLocations: { id: string, name: string }[] 
 }) {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState("");

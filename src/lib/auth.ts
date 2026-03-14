@@ -52,7 +52,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ session, token }) {
       if (token && session.user) {
-        // @ts-ignore
+        // @ts-expect-error NextAuth session user type doesn't include id by default
         session.user.id = token.id as string;
       }
       return session;

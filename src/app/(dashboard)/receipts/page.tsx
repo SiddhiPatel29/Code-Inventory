@@ -42,7 +42,7 @@ export default async function ReceiptsPage() {
               No receipts found
             </h3>
             <p className="text-sm text-muted-foreground mb-4 max-w-sm">
-              You haven't received any stock yet. Record a new receipt to track incoming goods.
+              You haven&apos;t received any stock yet. Record a new receipt to track incoming goods.
             </p>
           </div>
         </div>
