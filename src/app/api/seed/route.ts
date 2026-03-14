@@ -60,7 +60,8 @@ export async function GET() {
     }
 
     return NextResponse.json({ success: true, message: 'Database seeded successfully on Vercel!' });
-  } catch (error: any) {
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    const errorMsg = error instanceof Error ? error.message : "Unknown error";
+    return NextResponse.json({ success: false, error: errorMsg }, { status: 500 });
   }
 }
