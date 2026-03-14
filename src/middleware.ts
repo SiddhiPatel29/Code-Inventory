@@ -4,6 +4,12 @@ export default withAuth({
   pages: {
     signIn: "/login",
   },
+  callbacks: {
+    authorized: ({ req, token }) => {
+      console.log("MIDDLEWARE CHECK:", req.nextUrl.pathname);
+      return !!token || req.nextUrl.pathname.startsWith("/api/init-db") || req.nextUrl.pathname.startsWith("/register");
+    },
+  },
 });
 
 export const config = {
