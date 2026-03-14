@@ -1,0 +1,68 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Product {
+  id           String      @id @default(uuid())
+  name         String
+  sku          String      @unique
+  categoryId   String?
+  category     Category?   @relation(fields: [categoryId], references: [id])
+  uom          String      @default("Units") // Unit of Measure
+  reorderLevel Int         @default(0)
+  movements    StockMove[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model Location {
+  id                 String      @id @default(uuid())
+  name               String      @unique
+  type               String      // e.g., 'Vendor', 'Internal', 'Customer', 'Loss/Adjustment'
+  movesAsSource      StockMove[] @relation("SourceLocation")
+  movesAsDestination StockMove[] @relation("DestinationLocation")
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+}
+
+model StockMove {
+  id                    String   @id @default(uuid())
+  reference             String   // e.g., 'RCPT-2026-001'
+  type                  String   // 'Receipt', 'Delivery', 'Transfer', 'Adjustment'
+  productId             String
+  product               Product  @relation(fields: [productId], references: [id])
+  sourceLocationId      String
+  sourceLocation        Location @relation("SourceLocation", fields: [sourceLocationId], references: [id])
+  destinationLocationId String
+  destinationLocation   Location @relation("DestinationLocation", fields: [destinationLocationId], references: [id])
+  quantity              Int
+  status                String   // 'Draft', 'Pending', 'Done', 'Canceled'
+  date                  DateTime @default(now())
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
