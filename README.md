@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Core Inventory 📦
 
-## Getting Started
+Core Inventory is a modern, full-stack inventory management system built to streamline how businesses track, manage, and analyze their stock. This project was developed as a hackathon submission!
 
-First, run the development server:
+## 🚀 Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+[View Live App on Vercel](https://your-vercel-deployment-url-here.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Real-time Dashboard:** Instantly view key metrics like total products, low stock alerts, and recent movements.
+- **Product Management:** Create, update, and categorize products with detailed SKUs and Unit of Measure tracking.
+- **Stock Movements:** 
+  - 📥 **Receipts:** Record incoming stock from vendors.
+  - 📤 **Deliveries:** Dispatch stock to customers.
+  - 🔄 **Transfers:** Move inventory between different internal locations.
+  - ⚖️ **Adjustments:** Manually correct stock discrepancies.
+- **Secure Authentication:** User login and session management powered by NextAuth.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠 Tech Stack
 
-## Learn More
+- **Frontend:** [Next.js 15 (App Router)](https://nextjs.org/) & [React 19](https://react.dev/)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) & [shadcn/ui](https://ui.shadcn.com/)
+- **Backend & API:** Next.js Route Handlers & Server Actions
+- **Database:** PostgreSQL (via [Neon](https://neon.tech/))
+- **ORM:** [Prisma](https://www.prisma.io/)
+- **Authentication:** [NextAuth.js v4](https://next-auth.js.org/)
 
-To learn more about Next.js, take a look at the following resources:
+## 💻 Running Locally
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Prerequisites
+- Node.js (v18 or higher)
+- A PostgreSQL database string (e.g., from Neon, Supabase, or local)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/SiddhiPatel29/Code-Inventory.git
+   cd Code-Inventory
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. **Set up environment variables:**
+   Create a `.env` file in the root directory and add the following:
+   ```env
+   DATABASE_URL="postgres://username:password@host:port/database"
+   NEXTAUTH_SECRET="your-super-secret-key"
+   NEXTAUTH_URL="http://localhost:3000"
+   ```
+
+4. **Initialize database & seed data:**
+   ```bash
+   npx prisma db push
+   npx prisma db seed
+   ```
+
+5. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 🏆 Hackathon Context
+
+This project was built over a tight timeline focusing on delivering a functional, clean, and robust MVP for inventory control. Some of the key challenges overcome included complex Prisma schema design for multi-location stock movements, robust type safety, and debugging deployment pipeline intricacies on Vercel.
