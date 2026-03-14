@@ -4,7 +4,7 @@ Core Inventory is a modern, full-stack inventory management system built to stre
 
 ## 🚀 Live Demo
 
-[View Live App on Vercel](https://your-vercel-deployment-url-here.vercel.app/)
+[View Live App on Vercel][(https://code-inventory-n47w-4c8xztnae-siddhipatel29s-projects.vercel.app/login?callbackUrl=%2F)
 
 ## ✨ Features
 
